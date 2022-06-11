@@ -19,13 +19,14 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //logic to get the User From the Database
-        user.auth.springauthorization.model.User getByEmail = findById(1).get();
+        user.auth.springauthorization.model.User getByEmail = getByEmail(username);
         User user = new User(getByEmail.getEmail(), getByEmail.getPassword(), new ArrayList<>());
         return user;
     }
 
     public user.auth.springauthorization.model.User getByEmail(String email) {
-        return userRepo.getByEmail(email);
+        var user=  userRepo.findByUserName(email);
+        return  user;
     }
 
     public void saveUser(user.auth.springauthorization.model.User user) {

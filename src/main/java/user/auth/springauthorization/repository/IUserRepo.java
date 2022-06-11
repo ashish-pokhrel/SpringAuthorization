@@ -9,5 +9,5 @@ import user.auth.springauthorization.model.User;
 public interface IUserRepo extends JpaRepository<User,Integer> {
 
     @Query("SELECT s FROM User s WHERE s.email =:email")
-    public User getByEmail(String email);
+    public User findByUserName(String email);
 }
